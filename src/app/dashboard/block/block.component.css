@@ -1,0 +1,41 @@
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+#entete,p
+{
+    display: inline;
+    font-size: 30px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 500;
+}
+.table-responsive
+{
+    padding-top: 15px;
+}
+
+.cc{
+
+    box-shadow: 1px 1px 10px  rgb(156, 155, 155);
+    background-color:#FBFBFB ;
+
+}
+#dataTable{
+    background-color: white;
+}
+.fi{
+    margin-left: 10px;
+}
+.th{
+    background-color: teal;
+}
+.header
+{
+    font-size: 25px;
+    font-weight: 700;
+    background-color: #eeeeee;
+    padding: 10px;
+}
+img
+{
+    height: 25%;
+    width: 25%;
+}

@@ -1,0 +1,254 @@
+<ngx-spinner 
+[name]="sprinerName" 
+bdColor="rgba(0, 0, 0, 0.8)" 
+color="#fff" 
+type="ball-fussion" >
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<div class="container" *ngIf="!anneeUniv">
+  <div class="col-md-8 offset-md-2 text-center">
+    <div class="card">
+      <div class="card-body">
+        <h2 class="card-title">Année universitaire</h2>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+          content.</p>
+        <hr>
+        <form (ngSubmit)="addAnneeUnvi(addAnnee.value)" #addAnnee="ngForm" class="text-left">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="titlee">Année universitaire :</label>
+                <input type="text" class="form-control" autocomplete="off" placeholder="" name="title" ngModel
+                  id="titlee">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="startt">Départ :</label>
+                <input type="date" class="form-control" name="start" ngModel id="startt">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="endd">Fin:</label>
+                <input type="date" class="form-control" name="end" ngModel id="endd">
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h2 class="card-title">Semestre 1</h2>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="startSemstre1">Départ :</label>
+                <input type="date" class="form-control" name="startSemstre1" ngModel id="startSemstre1">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="endSemestre1">Fin:</label>
+                <input type="date" class="form-control" name="endSemestre1" ngModel id="endSemestre1">
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <h2 class="card-title">Semestre 2</h2>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="startSemstre2">Départ :</label>
+                <input type="date" class="form-control" name="startSemstre2" ngModel id="startSemstre2">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="endSemestre2">Fin:</label>
+                <input type="date" class="form-control" name="endSemestre2" ngModel id="endSemestre2">
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary">Enregister</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="anneeUniv">
+  <div class="card text-center cc">
+    <div class="card-body">
+      <full-calendar deepChangeDetection="true" [options]="calendarOptions"></full-calendar>
+    </div>
+  </div>
+</div>
+<div class="modal fade " id="addEvent" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="addEvent(addevent.value)" #addevent="ngForm" id="add">
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="eventName">Titre de l'événement:</label>
+                <input type="text" class="form-control" autocomplete="off" placeholder="" name="title" ngModel
+                  id="eventName">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="start">départ :</label>
+                <input type="date" class="form-control" name="start" ngModel id="start">
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="end">fin:</label>
+                <input type="date" class="form-control" name="end" ngModel id="end">
+              </div>
+            </div>
+
+          </div>
+          <div class="text-center">
+            <button type="submit" class="btn btn-primary" id="addEvent">Enregister</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Supprimer cet evennement</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <input type="number" id="idEvent" hidden>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+        <button class="btn btn-primary" type="button" (click)="deleteEvent()">Supprimer</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="modal fade" id="calendarSetting" tabindex="-1" role="dialog" aria-labelledby="calendarSetting"
+  aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered"  role="document">
+    <div class="modal-content" style="border-radius:25px ;">
+      <div class="modal-body calendarSettingBody">
+        <div class="container" >
+           
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">
+                année universitaire
+              </a>
+              <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Profile</a>
+              <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Contact</a>
+            </div>
+          </nav>
+          <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" style="padding-top: 15px;padding-bottom: 20px;" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+              <div class="card text-center" style="border: 1px solid;box-shadow: 5px 10px #888888;">
+                <div class="card-body" *ngIf="anneeUniv">
+                  <form (ngSubmit)="addAnneeUnvi(addAnnee.value)" #addAnnee="ngForm" class="text-left">
+
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="titleee">Année universitaire :</label>
+                          <input type="text" class="form-control" autocomplete="off" placeholder="" name="title" [ngModel]="anneeUniv.title"
+                            id="titleee">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="starttt">Départ :</label>
+                          <input type="date" class="form-control" name="start" [ngModel]="anneeUniv.start" id="starttt">
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="enddd">Fin:</label>
+                          <input type="date" class="form-control" name="end" [ngModel]="anneeUniv.end" id="enddd">
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-md-12 text-center">
+                        <h2 class="card-title">Semestre 1</h2>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="startSemstre11">Départ :</label>
+                          <input type="date" class="form-control" name="startSemstre1" [ngModel]="anneeUniv.startSemstre1" id="startSemstre11">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="endSemestre11">Fin:</label>
+                          <input type="date" class="form-control" name="endSemestre1" [ngModel]="anneeUniv.endSemestre1" id="endSemestre11">
+                        </div>
+                      </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                      <div class="col-md-12 text-center">
+                        <h2 class="card-title">Semestre 2</h2>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="startSemstre22">Départ :</label>
+                          <input type="date" class="form-control" name="startSemstre2" [ngModel]="anneeUniv.startSemstre2" id="startSemstre22">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="endSemestre22">Fin:</label>
+                          <input type="date" class="form-control" name="endSemestre2" [ngModel]="anneeUniv.endSemestre2" id="endSemestre22">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary">Enregister</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">...</div>
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

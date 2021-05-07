@@ -1,0 +1,159 @@
+<ngx-spinner 
+[name]="sprinerName" 
+bdColor="rgba(0, 0, 0, 0.8)" 
+color="#fff" 
+type="ball-fussion" >
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+<div class="student-profile " *ngIf="user">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-header bg-transparent text-center">
+                        <img class="profile_img" src="../../../assets/images/avataaars.png" alt="">
+                        <h3>{{user.nom}} {{user.prenom}} </h3>
+                    </div>
+                    <div class="card-body">
+                        <p class="mb-0"><strong class="pr-1">Nom :</strong>{{user.nom}}</p>
+                        <p class="mb-0"><strong class="pr-1">Prenom :</strong>{{user.prenom}}</p>
+                        <p class="mb-0"><strong class="pr-1">Role :</strong>{{user.role}}</p>
+                        <p class="mb-0"><strong class="pr-1">Departement :</strong>{{user.departement}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" >
+                <div class="row">
+                    <div class="col-md-10">
+                        <br>
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-transparent border-0">
+                                <h3 class="mb-0"><i class="far fa-clone pr-1"></i>Informations générales</h3>
+                            </div>
+                            <div class="card-body pt-0">
+                                <form (ngSubmit)="ChangeInfoPersonneller( infoPer.value )" #infoPer="ngForm">
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th width="30%">Nom</th>
+                                            <td width="2%">:</td>
+                                            <td>
+                                                <input type="text" class="form-control" autocomplete="off"  name="nom" placeholder="Nom"
+                                                    required [ngModel]="user.nom">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th width="30%">Prenom </th>
+                                            <td width="2%">:</td>
+                                            <td>
+                                                <input type="text" class="form-control" autocomplete="off" name="prenom" [ngModel]="user.prenom"
+                                                    placeholder="Prenom" required>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th width="30%">Role</th>
+                                            <td width="2%">:</td>
+                                            <td>{{user.role}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th width="30%">Departement</th>
+                                            <td width="2%">:</td>
+                                            <td>{{user.departemnt}}</td>
+                                        </tr>
+                                    </table>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary"> Modifier </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10 ">
+                        <br>
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-transparent border-0">
+                                <h3 class="mb-0"><i class="fas fa-shield-alt pr-1"></i>Sécurité</h3>
+                            </div>
+                            <div class="card-body pt-0">
+                                <form (ngSubmit)="ChangePassword(changepsd.value )" #changepsd="ngForm">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th width="30%"> Mot de passe actuel </th>
+                                        <td width="2%">:</td>
+                                        <td>
+                                            <input type="password" class="form-control" ngModel name="actuelPassword"
+                                                placeholder="Mot de passe actuel" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th width="30%">Nouveau mot de passe </th>
+                                        <td width="2%">:</td>
+                                        <td>
+                                            <input type="password" class="form-control" ngModel name="newPassword"
+                                                placeholder="Nouveau mot de passeil" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th width="30%">Confirmer le nouveau mot de passe</th>
+                                        <td width="2%">:</td>
+                                        <td>
+                                            <input type="password" class="form-control" ngModel name="cfNewPassword"
+                                                placeholder="Confirmer le nouveau mot de passe" required>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary"> Modifier </button>
+                                </div>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <br>
+                        <div class="card shadow-sm">
+                            <div class="card-header bg-transparent border-0">
+                                <h3 class="mb-0"><i class="fas fa-shield-alt pr-1"></i>Sécurité</h3>
+                            </div>
+                            <div class="card-body pt-0">
+                                <form (ngSubmit)="changeEmail(changeEml.value )" #changeEml="ngForm" id="changeEml">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th width="30%">Email</th>
+                                        <td width="2%">:</td>
+                                        <td>
+                                            <input type="email" class="form-control" name="email" placeholder="Email"
+                                                required [ngModel]="user.userName">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th width="30%">Confirmer l'Email </th>
+                                        <td width="2%">:</td>
+                                        <td>
+                                            <input type="email" class="form-control" ngModel name="cfEmail"
+                                                placeholder="Confirmer l'Email" required>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th width="30%">tapez mot de passe </th>
+                                        <td width="2%">:</td>
+                                        <td>
+                                            <input type="password" class="form-control" ngModel name="password"
+                                                placeholder="Confirmer l'Email" required>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary"> Modifier </button>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- /Student Profile -->

@@ -1,0 +1,17 @@
+.fc-myCustomButton-button
+{
+    background-color: blue;
+}
+.cc{
+    box-shadow: 1px 1px 10px  rgb(156, 155, 155);
+    background-color:#FBFBFB ;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+.calendarSettingBody
+{
+    height:auto;
+    
+    /*background-color: #cfd8dc;*/
+}

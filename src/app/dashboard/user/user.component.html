@@ -1,0 +1,155 @@
+<ngx-spinner 
+[name]="sprinerName" 
+bdColor="rgba(0, 0, 0, 0.8)" 
+color="#fff" 
+type="ball-fussion" 
+[fullScreen]=false>
+  <p style="font-size: 20px; color: white">Loading...</p>
+</ngx-spinner>
+
+  <div class="entete">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="header">
+            Gestion des utilisateurs<a href="#" class="alert-link"></a>.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="table-responsive" *ngIf="listUsers">
+
+
+
+
+  <div class="card text-center cc">
+
+    <div class="card-body">
+      <table class="table table-bordered table-sm" datatable [dtOptions]="dtOptions" id="dataTable" cellspacing="0">
+        <thead class="th">
+          <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Prenom</th>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of listUsers  ;let i=index ">
+            <td>{{ i }}</td>
+            <td>{{ user.nom }}</td>
+            <td>{{ user.prenom }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.userName }}</td>
+            <td class="text-center">
+              <div class="btn-group text-center" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary" (click)="deleteUser(user.id)"><i
+                    class="fas fa-user-minus"></i></button>
+                <button type="button" class="btn btn-secondary" (click)="getUser(user)" data-toggle="modal"
+                  data-target="#UpdatePass"><i class="far fa-edit"></i></button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade " id="addUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="addUser( user.value )" #user="ngForm" id="formAddUser">
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group float-label-control">
+                <input type="text" class="form-control" ngModel name="nom" placeholder="Nom" required>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group float-label-control">
+                <input type="text" class="form-control" ngModel name="prenom" placeholder="Prenom" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <select class="form-control" #role id="role" ngModel name="role" required>
+                <option value="Admin">Admin</option>
+                <option value="Responsable">Responsable</option>
+                <option value="Controller">Controller</option>
+              </select>
+            </div>
+            <div class="col-sm-6" id="dep">
+              <select class="form-control" ngModel name="departement">
+
+                <option value="ti">Departement informatique</option>
+                <option value="gp">Departement Genie procede</option>
+                <option value="gc">Departement Genie civile</option>
+                <option value="gst">Departement Gestion</option>
+                <option value="mq">Departement Mecanique</option>
+              </select>
+            </div>
+          </div>
+          <br>
+          <div class="form-group float-label-control">
+            <input type="Email" class="form-control" ngModel name="email" placeholder="Email" required>
+          </div>
+          <div class="form-group float-label-control">
+            <input type="password" class="form-control" ngModel name="password" placeholder="Mot de passe" required>
+          </div>
+          <div class="row">
+            <div class="col-12 text-center" style="padding-left: 80px;padding-right: 80px;">
+              <button type="submit" class="btn btn-success btn-block" [disabled]="user.invalid">Ajouter</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade " id="UpdatePass" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Oublie mot de passe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form #p="ngForm" id="changePass">
+          <div class="form-group float-label-control">
+            <input type="password" class="form-control" [(ngModel)]="pass.password" name="password"
+              placeholder="Mot de passe" required>
+          </div>
+          <div class="form-group float-label-control">
+            <input type="password" class="form-control" [(ngModel)]="pass.repPassword" name="repPassword" required
+              placeholder="répéter Mot de passe">
+          </div>
+          <div class="row">
+            <div class="col-12 text-center" style="padding-left: 80px;padding-right: 80px;">
+              <button class="btn btn-success btn-block" [disabled]="p.invalid || pass.password != pass.repPassword"
+                (click)="updatePassword()">Modifier</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
